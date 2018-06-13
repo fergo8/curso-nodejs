@@ -4,21 +4,18 @@ var app = express();
 app.set("view engine", "ejs");
 
 app.get("/", function(req, res){
-    res.send("<html><body>Portal de Noticias</body></html>");
+    res.render("home/index");
 });
 
-app.get("/tecnologia", function(req, res){
-    res.send("<html><body>Noticias de tecnologia</body></html>");
+app.get("/formulario_adicao_noticia", function(req, res){
+    res.render("admin/form_add_noticia");
 });
 
-app.get("/moda", function(req, res){
-    res.send("<html><body>Noticias de moda</body></html>");
+app.get("/noticias", function(req, res){
+    res.render("noticias/noticias");
 });
 
-app.get("/beleza", function(req, res){
-    res.send("<html><body>Noticias de beleza</body></html>");
-});
-
+// Servidor escutando a porta 3000
 app.listen(3000, function(){
     console.log("Server ON");
 });
