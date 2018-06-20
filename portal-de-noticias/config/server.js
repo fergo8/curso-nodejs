@@ -1,6 +1,8 @@
 var express = require("express");
 var consign = require("consign");
 var bodyParser = require("body-parser");
+var expressValidator = require("express-validator");
+
 var app = express();
 
 // Indica o ejs como view engine do projeto
@@ -9,8 +11,9 @@ app.set("view engine", "ejs");
 // Configurar path das views
 app.set("views", "./app/views");
 
-// Middleware Body-parser
+// Middlewares
 app.use(bodyParser.urlencoded({extended : true}));
+app.use(expressValidator());
 
 // Configurar path das rotas
 consign()
