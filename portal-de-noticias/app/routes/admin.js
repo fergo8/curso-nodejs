@@ -6,6 +6,13 @@ module.exports = function(app){
     app.post("/noticias/salvar", function(req, res){
         var noticia = req.body;
 
+        req.assert('titulo', 'Título precisa ser preenchido').notEmpty();
+        req.assert('resumo', 'Resumo precisa ser preenchido').notEmpty();
+        req.assert('resumo', 'Resumo deve conter entre 10 e 100 caracteres').len(10, 100);
+        req.assert('autor', 'Autor precisa ser preenchido').notEmpty();
+        req.assert('data_noticia', 'Data precisa ser preenchida').notEmpty().isISO8601();
+        req.assert('noticia', 'Notícia precisa ser preenchida').notEmpty();
+
         var connection = app.config.dbConnection();
         var noticiasModel = new app.app.models.NoticiasDAO(connection);
 
