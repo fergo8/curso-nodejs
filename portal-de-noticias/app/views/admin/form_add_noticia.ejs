@@ -21,19 +21,19 @@
 		
 		<form action="/noticias/salvar" method="post">
 			<label>Título</label><br />
-			<input name="titulo" id="titulo" type="text" placeholder="Título da notícia" /><br /><br />
+			<input name="titulo" id="titulo" type="text" value="<%= noticia.titulo %>" placeholder="Título da notícia" /><br /><br />
 			
 			<label>Resumo</label><br />
-			<input name="resumo" id="resumo" type="text" placeholder="Resumo da notícia" /><br /><br />
+			<input name="resumo" id="resumo" type="text" value="<%= noticia.resumo %>" placeholder="Resumo da notícia" /><br /><br />
 			
 			<label>Nome do autor</label><br />
-			<input name="autor" id="autor" type="text" placeholder="Autor da notícia" /><br /><br />
+			<input name="autor" id="autor" type="text" value="<%= noticia.autor %>" placeholder="Autor da notícia" /><br /><br />
 			
 			<label>Data de publicação</label><br />
-			<input name="data_noticia" id="data_noticia" type="date" placeholder="Data da notícia" /><br /><br />
+			<input name="data_noticia" id="data_noticia" type="date" value="<%= noticia.data_noticia %>" placeholder="Data da notícia" /><br /><br />
 			
 			<label>Notícia</label><br />
-			<textarea name="noticia" id="noticia" cols="30" rows="10" placeholder="Conteúdo da notícia"></textarea><br /><br />
+			<textarea name="noticia" id="noticia" cols="30" rows="10" value="<%= noticia.noticia %>" placeholder="Conteúdo da notícia"></textarea><br /><br />
 
 			<input type="submit" value="Enviar" />
 		</form>
