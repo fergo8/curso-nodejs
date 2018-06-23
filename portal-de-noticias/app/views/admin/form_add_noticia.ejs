@@ -8,7 +8,17 @@
 
 		<h1>Adicionar notícia</h1>
 		<br />
-
+		
+		<% if(valid){ %>
+			<ul>
+				<% for(var i=0; i < valid.length; i++){ %>
+					<li>
+						<%= valid[i].msg; %>
+					</li>
+				<% } %>
+			</ul>	
+		<% } %>
+		
 		<form action="/noticias/salvar" method="post">
 			<label>Título</label><br />
 			<input name="titulo" id="titulo" type="text" placeholder="Título da notícia" /><br /><br />
