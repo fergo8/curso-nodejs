@@ -35,7 +35,7 @@
 
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="index.html">HOME</a></li>
+						<li><a href="index">HOME</a></li>
 					</ul>
 				</div>
 			</div>
@@ -44,20 +44,23 @@
 
 	    <div class="container">
 		
-			<div class="row">
-				<div class="col-md-12">
-					<div class="alert alert-danger">
-						<strong>Atenção!</strong>
-						<ul>
-							<li>Título é obrigatório</li>
-							<li>Resumo é obrigatório</li>
-						</ul>
+			<% if(valid.length > 0){ %>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="alert alert-danger">
+							<strong>Atenção!</strong>
+							<ul>
+								<% for(var i=0; i < valid.length; i++){ %>
+									<li><%= valid[i].msg %></li>
+								<% } %>
+							</ul>
+						</div>
 					</div>
 				</div>
-			</div>
+			<% } %>
 	    	<div class="row">
 	    		<div class="col-md-12">
-	    			<form>
+	    			<form action="/noticias/salvar" method="post">
 						<div class="form-group">
 							<label for="titulo">Título:</label>
 							<input type="text" class="form-control" id="titulo" name="titulo">
