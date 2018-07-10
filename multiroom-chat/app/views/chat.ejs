@@ -80,21 +80,8 @@
 			
 			<div class="row participantes" id="participantes" style="display:none">
 				<div class="col-md-1"></div>
-				<div class="col-md-10">
-					<span class="participante">
-						<img src="images/ico_usuario.png" />
-						Jorge
-					</span>
+				<div class="col-md-10" id="pessoas">
 					
-					<span class="participante">
-						<img src="images/ico_usuario.png" />
-						José
-					</span>
-					
-					<span class="participante">
-						<img src="images/ico_usuario.png" />
-						Fernando
-					</span>
 				</div>
 				<div class="col-md-1"></div>
                 
@@ -142,6 +129,17 @@
 				html += "</div>";
 
 				$('#dialogos').append(html);
+			});
+
+			socket.on("participantesParaCliente", function(data){
+				var html = "";
+
+				html += "<span class=\"participante\">";
+					html += "<img src=\"ico_usuario.png\">";
+					html += data.mensagem;
+				html += "</span>";
+
+				$('#pessoas').append(html);
 			});
 		</script>
 
