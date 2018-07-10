@@ -32,15 +32,17 @@ io.on("connection", function(socket){
         );
 
         // relação de participantes
-        socket.emit(
-            "participantesParaCliente",
-            { apelido : data.apelido }
-        );
+        if(parseInt(data.apelido_atualizado) == 0){
+            socket.emit(
+                "participantesParaCliente",
+                { apelido : data.apelido }
+            );
 
-        socket.broadcast.emit(
-            "participantesParaCliente",
-            { apelido : data.apelido }
-        );
+            socket.broadcast.emit(
+                "participantesParaCliente",
+                { apelido : data.apelido }
+            );
+        }
 
     });
 });

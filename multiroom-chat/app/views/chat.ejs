@@ -96,6 +96,7 @@
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="Mensagem" id="mensagem">
 							<input type="hidden" value="<%= dadosForm.apelido %>" id="apelido">
+							<input type="hidden" value="0" id="apelido_atualizado">
 							<span class="input-group-btn">
 								<button class="btn btn-default" type="button" id="enviar_mensagem">></button>
 							</span>
@@ -116,7 +117,11 @@
 			$("#enviar_mensagem").click(function(){
 				socket.emit(
 					"msgParaServer",
-					{ apelido : $("#apelido").val(), mensagem : $("#mensagem").val() }
+					{
+						apelido : $("#apelido").val(),
+						mensagem : $("#mensagem").val(),
+						apelido_atualizado : $("#apelido_atualizado").val()
+					}
 				);
 			});
 
