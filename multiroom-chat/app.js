@@ -14,7 +14,19 @@ app.set("io", io); // definindo variável global "io" com o valor da var io
 io.on("connection", function(socket){
     console.log("User online");
 
-    socket.on("disconnect", function() {
+    socket.on("disconnect", function(){
         console.log("User offline");
+    });
+
+    socket.on("msgParaServer", function(data){
+        socket.emit(
+            "msgParaCliente",
+            { apelido : data.apelido, mensagem : data.mensagem }
+        );
+
+        socket.broadcast.emit(
+            "msgParaCliente",
+            { apelido: data.apelido, mensagem: data.mensagem }
+        );
     });
 });
