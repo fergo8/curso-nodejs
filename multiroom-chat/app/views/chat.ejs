@@ -148,7 +148,9 @@
 		<script>
 			var socket = io("http://localhost:3000"); // instância do objeto socket.io
 
-			
+			socket.on("msgParaCliente", function(data){
+				alert(data);
+			});
 		</script>
 
 	</body>
