@@ -123,6 +123,8 @@
 						apelido_atualizado : $("#apelido_atualizado").val()
 					}
 				);
+
+				$("#apelido_atualizado").val(1);
 			});
 
 			socket.on("msgParaCliente", function(data){
