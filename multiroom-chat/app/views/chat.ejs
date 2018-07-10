@@ -124,6 +124,7 @@
 					}
 				);
 
+				$("#mensagem").val("");
 				$("#apelido_atualizado").val(1);
 			});
 
@@ -136,13 +137,15 @@
 				html += "</div>";
 
 				$('#dialogos').append(html);
+
+				window.scrollTo(0, document.body.scrollHeight);
 			});
 
 			socket.on("participantesParaCliente", function(data){
 				var html = "";
 
 				html += "<span class=\"participante\">";
-					html += "<img src=\"ico_usuario.png\">";
+					html += "<img src=\"images/ico_usuario.png\">";
 					html += data.mensagem;
 				html += "</span>";
 
