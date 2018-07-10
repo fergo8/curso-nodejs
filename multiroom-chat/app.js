@@ -2,6 +2,17 @@
 var app = require("./config/server");
 
 // escutando na porta 80
-app.listen(3000, function(){
+var server = app.listen(3000, function(){
     console.log("Server ON");
+});
+
+var io = require("socket.io").listen(server);
+
+// criando conexão por websocket
+io.on("connection", function(socket){
+    console.log("User online");
+
+    socket.on("disconnect", function() {
+        console.log("User offline");
+    });
 });
