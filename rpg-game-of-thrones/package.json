@@ -1,12 +1,12 @@
 {
-  "name": "multiroom_chat",
+  "name": "rpg-game-of-thrones",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Jorge",
+  "author": "Jefferson Gomes",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",
