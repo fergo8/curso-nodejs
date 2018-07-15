@@ -1,5 +1,5 @@
 module.exports.index = function(app, req, res){
-    res.render("index");
+    res.render("index", { valid : {} } );
 }
 
 module.exports.autenticar = function(app, req, res){
