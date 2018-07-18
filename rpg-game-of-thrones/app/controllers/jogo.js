@@ -19,3 +19,11 @@ module.exports.sair = function(app, req, res){
         res.render("index", { valid : {} });
     });
 }
+
+module.exports.suditos = function(app, req, res){
+    res.render("aldeoes", { valid : {} });
+}
+
+module.exports.pergaminhos = function(app, req, res){
+    res.render("pergaminhos", { valid : {} });
+}
