@@ -27,14 +27,28 @@ module.exports.sair = function(app, req, res){
 }
 
 module.exports.suditos = function(app, req, res){
+    if (req.session.autorizado !== true) {
+        res.send("Necessário realizar login");
+        return;
+    }
+
     res.render("aldeoes", { valid : {} });
 }
 
 module.exports.pergaminhos = function(app, req, res){
+    if (req.session.autorizado !== true) {
+        res.send("Necessário realizar login");
+        return;
+    }
+
     res.render("pergaminhos", { valid : {} });
 }
 
 module.exports.ordenar_acao_sudito = function(app, req, res){
+    if (req.session.autorizado !== true) {
+        res.send("Necessário realizar login");
+        return;
+    }
 
     var dadosForm = req.body;
 
