@@ -22,11 +22,9 @@ module.exports.cadastrar = function (app, req, res) {
     var UsuariosDAO = new app.app.models.UsuariosDAO(connection);
     var JogoDAO = new app.app.models.JogoDAO(connection);
     
+    // gerando parâmetros do jogo
     UsuariosDAO.inserirUsuario(dadosForm);
     JogoDAO.gerarParametros(dadosForm.usuario);
-
-    // gerando parâmetros do jogo
-    
 
     res.send("cadastrar");
 }
