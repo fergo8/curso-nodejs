@@ -35,6 +35,15 @@ JogoDAO.prototype.iniciarJogo = function (res, usuario, casa, comando_invalido){
     });
 }
 
+module.exports.acao = function(acao){
+    this._connection.open(function(err, mongoclient){
+        mongoclient.collection("acao", function(err, collection){
+            collection.insert(acao);
+            mongoclient.close();
+        });
+    });
+}
+
 module.exports = function(){
     return JogoDAO;
 }

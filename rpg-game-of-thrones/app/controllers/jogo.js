@@ -62,5 +62,11 @@ module.exports.ordenar_acao_sudito = function(app, req, res){
         return;
     }
 
+    var connection = app.config.dbConnection;
+    var JogoDAO = new app.app.models.JogoDAO(connection);
+
+    dadosForm.usuario = req.session.usuario;
+    JogoDAO.acao(dadosForm);
+
     res.send("Tudo ok!");
 }
