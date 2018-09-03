@@ -45,9 +45,7 @@ module.exports.pergaminhos = function(app, req, res){
     var JogoDAO = new app.app.models.JogoDAO(connection);
 
     var usuario = req.session.usuario;
-    JogoDAO.getAcoes(usuario);
-
-    res.render("pergaminhos", { valid : {} });
+    JogoDAO.getAcoes(res, usuario);
 }
 
 module.exports.ordenar_acao_sudito = function(app, req, res){
