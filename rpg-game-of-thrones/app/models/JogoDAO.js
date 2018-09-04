@@ -43,22 +43,31 @@ JogoDAO.prototype.acao = function(acao){
             var tempo = null;
 
             switch (parseInt(acao.acao)){
-                case 1:
-                    tempo = 1 * 60 * 60000;
-                    break;
-                case 2:
-                    tempo = 2 * 60 * 60000;
-                    break;
-                case 3:
-                    tempo = 5 * 60 * 60000;
-                    break;
-                case 4:
-                    tempo = 5 * 60 * 60000;
-                    break;
+                case 1: tempo = 1 * 60 * 60000; break;
+                case 2: tempo = 2 * 60 * 60000; break;
+                case 3: tempo = 5 * 60 * 60000; break;
+                case 4: tempo = 5 * 60 * 60000; break;
             }
 
             acao.acao_termina = date.getTime() + tempo;
             collection.insert(acao);
+        });
+
+        mongoclient.collection("jogo", function (err, collection) {
+
+            var moedas = null;
+
+            switch (parseInt(acao.acao)) {
+                case 1: moedas = -2 * acao.quantidade; break;
+                case 2: moedas = -3 * acao.quantidade; break;
+                case 3: moedas = -1 * acao.quantidade; break;
+                case 4: moedas = -1 * acao.quantidade; break;
+            }
+
+            collection.update(
+                { usuario : acao.usuario },
+                { $inc : { moeda : moedas } }
+            );
             mongoclient.close();
         });
     });
