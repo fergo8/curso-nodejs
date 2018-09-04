@@ -38,10 +38,31 @@
 						method : "get",
 						success : function(data){
 							$("#acoes").html(data);
+
+							clearTimeout(timerId);
+							cronometro();
 						}
 					});
 				});
 			});
+
+			var timerId = null;
+
+			function cronometro(){
+				$(".tempo_restante").each(function(){
+					var segundos = $(this).html();
+					var segundos_atuais = parseInt(segundos) - 1;
+
+					if(segundos_atuais < 0){
+						window.location.href = "/jogo?msg=ACTION_FINISH"
+					}
+					else {
+						$(this).html(segundos_atuais);
+					}
+				});
+
+				timerId = setTimeout('cronometro()', 1000);
+			}
 		</script>
 
 	</head>
@@ -67,6 +88,12 @@
 			<% if(msg == "SUCCESS"){ %>
 				<div class="alert alert-success" id="msg">
 					<strong>Ação realizada com sucesso!</strong>
+				</div>
+			<% } %>
+
+			<% if(msg == "ACTION_FINISH"){ %>
+				<div class="alert alert-info" id="msg">
+					<strong>Ação finalizada com sucesso!</strong>
 				</div>
 			<% } %>
 
