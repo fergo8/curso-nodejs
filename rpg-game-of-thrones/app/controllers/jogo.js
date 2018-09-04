@@ -74,3 +74,17 @@ module.exports.ordenar_acao_sudito = function(app, req, res){
 
     res.redirect("jogo?msg=SUCCESS");
 }
+
+module.exports.revogar_ordem = function(app, req, res){
+    if (req.session.autorizado !== true) {
+        res.send("Necessário realizar login");
+        return;
+    }
+
+    var url_query = req.query;
+
+    var connection = app.config.dbConnection;
+    var JogoDAO = new app.app.models.JogoDAO(connection);
+
+    JogoDAO.revogarOrdem(url_query.id_acao, res);
+}
