@@ -97,6 +97,12 @@
 				</div>
 			<% } %>
 
+			<% if(msg == "ACTION_DELETED"){ %>
+				<div class="alert alert-warning" id="msg">
+					<strong>Ação revogada!</strong>
+				</div>
+			<% } %>
+
 			<div class="row">
 	    		<div class="col-sm-3 casa">
 					<img src="images/casa_<%=img_casa%>.jpg" />
