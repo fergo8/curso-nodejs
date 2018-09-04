@@ -42,7 +42,7 @@ JogoDAO.prototype.acao = function(acao){
             var date = new Date();
             var tempo = null;
 
-            switch (acao.acao){
+            switch (parseInt(acao.acao)){
                 case 1:
                     tempo = 1 * 60 * 60000;
                     break;
