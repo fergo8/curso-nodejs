@@ -19,7 +19,7 @@ module.exports = function(app){
         app.app.controllers.jogo.ordenar_acao_sudito(app, req, res);
     });
 
-    app.post("/revogar_ordem", function (req, res) {
+    app.get("/revogar_ordem", function (req, res) {
         app.app.controllers.jogo.revogar_ordem(app, req, res);
     });
 }
