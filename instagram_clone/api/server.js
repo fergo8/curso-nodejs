@@ -1,6 +1,7 @@
 var express = require("express"),
     bodyParser = require("body-parser"),
-    mongo = require("mongodb");
+    mongo = require("mongodb"),
+    objectID = require("mongodb").ObjectId;
 
 var app = express();
 
@@ -49,6 +50,23 @@ app.get("/api", function(req, res){
         mongoclient.collection("posts", function(err, collection){
             collection.find().toArray(function(err, result){
                 if(err){
+                    res.json(err);
+                }
+                else {
+                    res.json(result);
+                }
+                mongoclient.close();
+            });
+        });
+    });
+});
+
+// GET by ID (equivalente Read)
+app.get("/api/:id", function (req, res) {
+    db.open(function (err, mongoclient) {
+        mongoclient.collection("posts", function (err, collection) {
+            collection.find(objectID(req.params.id)).toArray(function (err, result) {
+                if (err) {
                     res.json(err);
                 }
                 else {
