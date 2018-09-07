@@ -1,28 +1,38 @@
+// ========== Server Config ==========
+
+// Import modules
 var express = require("express"),
     bodyParser = require("body-parser"),
     mongo = require("mongodb"),
     objectID = require("mongodb").ObjectId;
 
+// Instanciando Express
 var app = express();
 
 // Middlewares
 app.use(bodyParser.urlencoded({ extended : true }));
 app.use(bodyParser.json());
 
+// Definindo port
 var port = 8080;
-
 app.listen(port);
 
+console.log("HTTP Server on port: "+port);
+
+// ========== DB Conection ==========
+
+// Instanciando objeto db para conexão com MongoDB
 var db = new mongo.Db(
     "instaclone",
     new mongo.Server("localhost", 27017, {}),
     {}
 );
 
-console.log("HTTP Server on port: "+port);
+// ========== API RESTful ==========
 
+// Rota da página principal da API
 app.get("/", function(req, res){
-    res.send({ msg : "Olá" });
+    res.send({ msg : "Página Principal" });
 });
 
 // POST (equivalente Create)
