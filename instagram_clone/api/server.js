@@ -112,3 +112,20 @@ app.put("/api/:id", function (req, res) {
         });
     });
 });
+
+// DELETE by ID (equivalente Delete)
+app.delete("/api/:id", function (req, res) {
+    db.open(function (err, mongoclient) {
+        mongoclient.collection("posts", function (err, collection) {
+            collection.remove({ _id: objectID(req.params.id) }, function(err, result){
+                if(err){
+                    res.json(err);
+                }
+                else {
+                    res.json(result);
+                }
+                mongoclient.close();
+            });
+        });
+    });
+});
