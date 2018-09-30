@@ -3,6 +3,7 @@
 // Import modules
 var express = require("express"),
     bodyParser = require("body-parser"),
+    multiparty = require("connect-multiparty"),
     mongo = require("mongodb"),
     objectID = require("mongodb").ObjectId;
 
@@ -12,6 +13,7 @@ var app = express();
 // Middlewares
 app.use(bodyParser.urlencoded({ extended : true }));
 app.use(bodyParser.json());
+app.use(multiparty());
 
 // Definindo port
 var port = 8080;
@@ -37,8 +39,13 @@ app.get("/", function(req, res){
 
 // POST (equivalente Create)
 app.post("/api", function(req, res){
+    res.setHeader("Access-Control-Allow-Origin", "*");
+
     var dados = req.body;
 
+    res.send(dados);
+
+    /*
     db.open(function(err, mongoclient){
         mongoclient.collection("posts", function(err, collection){
             collection.insert(dados, function(err, result){
@@ -51,7 +58,7 @@ app.post("/api", function(req, res){
                 mongoclient.close();
             });
         });
-    });
+    });*/
 });
 
 // GET (equivalente Read)
