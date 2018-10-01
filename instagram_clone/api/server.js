@@ -5,7 +5,8 @@ var express = require("express"),
     bodyParser = require("body-parser"),
     multiparty = require("connect-multiparty"),
     mongo = require("mongodb"),
-    objectID = require("mongodb").ObjectId;
+    objectID = require("mongodb").ObjectId,
+    fs = require("fs");
 
 // Instanciando Express
 var app = express();
@@ -41,24 +42,38 @@ app.get("/", function(req, res){
 app.post("/api", function(req, res){
     res.setHeader("Access-Control-Allow-Origin", "*");
 
-    var dados = req.body;
+    var date = new Date();
+    var time_stamp = date.getTime();
 
-    res.send(dados);
+    var url_imagem = time_stamp + "_" + req.files.arquivo.originalFilename;
+    var path_origem = req.files.arquivo.path;
+    var path_destino = "./uploads/" + url_imagem;
 
-    /*
-    db.open(function(err, mongoclient){
-        mongoclient.collection("posts", function(err, collection){
-            collection.insert(dados, function(err, result){
-                if(err){
-                    res.send(err);
-                }
-                else {
-                    res.send(result);
-                }
-                mongoclient.close();
+    fs.rename(path_origem, path_destino, function(err){
+        if(err){
+            res.status(500).json({ error : err });
+            return;
+        }
+
+        var dados = {
+            url_imagem : url_imagem,
+            titulo : req.body.titulo
+        }
+
+        db.open(function (err, mongoclient) {
+            mongoclient.collection("posts", function (err, collection) {
+                collection.insert(dados, function (err, result) {
+                    if (err) {
+                        res.send(err);
+                    }
+                    else {
+                        res.send(result);
+                    }
+                    mongoclient.close();
+                });
             });
         });
-    });*/
+    });
 });
 
 // GET (equivalente Read)
