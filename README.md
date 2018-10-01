@@ -33,6 +33,15 @@ Desenvolver uma aplicação de chat multiroom utilizando a plataforma Node.js e 
 
 O projeto segue o design pattern MVC, dividindo o código em três camadas.
 
+**Frameworks usados:**
+
+* body-parser
+* consign
+* ejs
+* express
+* express-validator
+* socket.io
+
 
 ## Projeto #3: MMORPG Game of Thrones
 
