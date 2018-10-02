@@ -32,12 +32,19 @@
 										'</span>' +
 										'<img class="img-responsive center-block" src="http://localhost:8080/imagens/' + data[i].url_imagem + '" />' +
 										'<div class="comentar">' +
-											'<input type="text" class="form-control input_comentario" placeholder="Adicione um comentário">' +
-											'<button type="button" class="btn btn-default btn_postagem">Comentar</button>' +
+											'<input type="text" id="post_' + data[i]._id + '" class="form-control input_comentario" placeholder="Adicione um comentário">' +
+											'<button type="button" value="' + data[i]._id + '" class="btn btn-default btn_postagem">Comentar</button>' +
 										'</div>' +
 									'</div>'
 								);
 							}
+
+							$(".btn_postagem").click(function(){
+								var id = "post_" + this.value;
+								var comentario = $("#" + id).val();
+
+								alert(comentario);
+							});
 						}
 					}
 
