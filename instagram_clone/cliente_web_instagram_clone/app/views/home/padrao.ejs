@@ -40,10 +40,14 @@
 							}
 
 							$(".btn_postagem").click(function(){
-								var id = "post_" + this.value;
-								var comentario = $("#" + id).val();
+								var id = this.value;
+								var id_input = "post_" + id;
+								var comentario = $("#" + id_input).val();
 
-								alert(comentario);
+								var xhr = new XMLHttpRequest();
+
+								xhr.open("PUT", "http://localhost:8080/api/"+id);
+								xhr.send();
 							});
 						}
 					}
