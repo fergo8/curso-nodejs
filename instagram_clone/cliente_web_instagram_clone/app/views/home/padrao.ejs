@@ -30,7 +30,11 @@
 										'<span class="titulo">' +
 											data[i].titulo +
 										'</span>' +
-										'<img src="http://localhost:8080/imagens/' + data[i].url_imagem + '" />' +
+										'<img class="img-responsive center-block" src="http://localhost:8080/imagens/' + data[i].url_imagem + '" />' +
+										'<div class="comentar">' +
+											'<input type="text" class="form-control input_comentario" placeholder="Adicione um comentário">' +
+											'<button type="button" class="btn btn-default btn_postagem">Comentar</button>' +
+										'</div>' +
 									'</div>'
 								);
 							}
