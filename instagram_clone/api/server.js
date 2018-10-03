@@ -16,6 +16,15 @@ app.use(bodyParser.urlencoded({ extended : true }));
 app.use(bodyParser.json());
 app.use(multiparty());
 
+app.use(function(req, res, next){
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+    res.setHeader("Access-Control-Allow-Headers", "content-type");
+    res.setHeader("Access-Control-Allow-Credentials", true);
+
+    next();
+});
+
 // Definindo port
 var port = 8080;
 app.listen(port);
@@ -40,7 +49,6 @@ app.get("/", function(req, res){
 
 // POST (equivalente Create)
 app.post("/api", function(req, res){
-    res.setHeader("Access-Control-Allow-Origin", "*");
 
     var date = new Date();
     var time_stamp = date.getTime();
@@ -78,9 +86,6 @@ app.post("/api", function(req, res){
 
 // GET (equivalente Read)
 app.get("/api", function(req, res){
-
-    res.setHeader("Access-Control-Allow-Origin", "*");
-
     db.open(function(err, mongoclient){
         mongoclient.collection("posts", function(err, collection){
             collection.find().toArray(function(err, result){
@@ -131,6 +136,9 @@ app.get("/api/:id", function (req, res) {
 
 // PUT by ID (equivalente Update)
 app.put("/api/:id", function (req, res) {
+    res.send(req.params.id);
+
+    /*
     db.open(function (err, mongoclient) {
         mongoclient.collection("posts", function (err, collection) {
             collection.update(
@@ -151,7 +159,7 @@ app.put("/api/:id", function (req, res) {
                 }
             );
         });
-    });
+    }); */
 });
 
 // DELETE by ID (equivalente Delete)
