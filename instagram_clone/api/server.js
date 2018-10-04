@@ -136,17 +136,17 @@ app.get("/api/:id", function (req, res) {
 
 // PUT by ID (equivalente Update)
 app.put("/api/:id", function (req, res) {
-    res.send(req.params.id);
-
-    /*
     db.open(function (err, mongoclient) {
         mongoclient.collection("posts", function (err, collection) {
             collection.update(
                 { _id : objectID(req.params.id) },
-                { $set : {
-                    nome : req.body.nome,
-                    foto : req.body.foto
-                } },
+                { $push :   {
+                                comentarios : {
+                                    id_comentario : new objectID(),
+                                    comentario : req.body.comentario
+                                }
+                            } 
+                },
                 {},
                 function(err, result){
                     if(err){
@@ -159,7 +159,7 @@ app.put("/api/:id", function (req, res) {
                 }
             );
         });
-    }); */
+    });
 });
 
 // DELETE by ID (equivalente Delete)
