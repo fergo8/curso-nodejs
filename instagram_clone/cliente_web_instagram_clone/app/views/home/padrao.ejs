@@ -31,12 +31,25 @@
 											data[i].titulo +
 										'</span>' +
 										'<img class="img-responsive center-block" src="http://localhost:8080/imagens/' + data[i].url_imagem + '" />' +
+										'<div id="comentario_' + data[i]._id + '" class="comentarios"></div>' +
 										'<div class="comentar">' +
 											'<input type="text" id="post_' + data[i]._id + '" class="form-control input_comentario" placeholder="Adicione um comentário">' +
 											'<button type="button" value="' + data[i]._id + '" class="btn btn-default btn_postagem">Comentar</button>' +
 										'</div>' +
 									'</div>'
 								);
+
+								if(data[i].comentarios != undefined){
+									var comentarios = data[i].comentarios;
+
+									for(var j=0; j < comentarios.length; j++){
+										$("#comentario_"+data[i]._id).append(
+											'<div class="txt_comentario">' +
+												comentarios[j].comentario +
+											'</div>'
+										);
+									}
+								}
 							}
 
 							$(".btn_postagem").click(function(){
