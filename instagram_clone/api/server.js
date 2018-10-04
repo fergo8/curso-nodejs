@@ -166,15 +166,24 @@ app.put("/api/:id", function (req, res) {
 app.delete("/api/:id", function (req, res) {
     db.open(function (err, mongoclient) {
         mongoclient.collection("posts", function (err, collection) {
-            collection.remove({ _id: objectID(req.params.id) }, function(err, result){
-                if(err){
-                    res.json(err);
+            collection.update(
+                {},
+                { $pull :   {
+                                comentarios : { id_comentario : objectID(req.params.id) }
+                            }
+                },
+                { multi : true },
+            
+                function(err, result){
+                    if(err){
+                        res.json(err);
+                    }
+                    else {
+                        res.json(result);
+                    }
+                    mongoclient.close();
                 }
-                else {
-                    res.json(result);
-                }
-                mongoclient.close();
-            });
+            );
         });
     });
 });
